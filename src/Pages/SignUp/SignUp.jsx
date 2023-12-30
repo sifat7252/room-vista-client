@@ -13,7 +13,7 @@ const SignUp = () => {
         const photoUrl = form.photoUrl.value;
         const email = form.email.value;
         const password = form.password.value;
-        const accepted = form.checkbox.checked;
+        // const accepted = form.checkbox.checked;
         const registerUser = {name, photoUrl, email, password}
         console.log( registerUser);
     }
@@ -24,9 +24,6 @@ const SignUp = () => {
      data-aos-easing="ease-out-cubic"
      data-aos-duration="1000">
       <div className="flex justify-center items-center"><img src="https://i.ibb.co/g7Vqxbh/room-vista-high-resolution-logo-transparent.png" alt="" className="h-20 " /></div>
-        {/* <h4 className="block font-sans text-2xl font-semibold leading-snug tracking-normal text-blue-900 antialiased">
-          Register
-        </h4> */}
         <div className="flex items-center justify-center"><p className="mt-1 block font-sans text-base font-semibold leading-relaxed text-gray-700 antialiased text-transparent bg-clip-text   bg-gradient-to-r from-blue-900 to-red-600">
           Enter your details for register.
         </p></div>
