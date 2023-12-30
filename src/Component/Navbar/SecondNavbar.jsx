@@ -4,27 +4,32 @@ import { Link } from "react-router-dom";
 const SecondNavbar = () => {
   const navLinks = (
     <>
-      <li className="p-1 font-sans text-sm md:text-base lg:text-base text-black lg:font-semibold md:font-medium font-normal     text-transparent bg-clip-text antialiased block bg-gradient-to-r from-orange-700 to-orange-500 ">
+      <li className="p-1 font-sans text-sm md:text-base lg:text-base text-black lg:font-semibold md:font-medium font-normal     text-transparent bg-clip-text antialiased block bg-gradient-to-r from-blue-900 to-red-600 ">
         <Link to={"/"} className="flex items-center">
-          Home
+          HOME
         </Link>
       </li>
-      <li className="p-1 font-sans text-sm md:text-base lg:text-base text-black lg:font-semibold md:font-medium font-normal     text-transparent bg-clip-text   bg-gradient-to-r from-orange-700 to-orange-500">
-        <Link to={"/services"} className="flex items-center">
-          Services
+      <li className="p-1 font-sans text-sm md:text-base lg:text-base text-black lg:font-semibold md:font-medium font-normal     text-transparent bg-clip-text antialiased block bg-gradient-to-r from-blue-900 to-red-600 ">
+        <Link to={"/about"} className="flex items-center">
+          ABOUT
+        </Link>
+      </li>
+      <li className="p-1 font-sans text-sm md:text-base lg:text-base text-black lg:font-semibold md:font-medium font-normal     text-transparent bg-clip-text   bg-gradient-to-r from-blue-900 to-red-600">
+        <Link to={"/rooms"} className="flex items-center">
+          ROOMS
         </Link>
       </li>
       {
         // user &&
         <>
-          {/* <li className="p-1 font-sans text-sm md:text-base lg:text-base text-black lg:font-semibold md:font-medium font-normal     text-transparent bg-clip-text   bg-gradient-to-r from-orange-700 to-orange-500">
+          {/* <li className="p-1 font-sans text-sm md:text-base lg:text-base text-black lg:font-semibold md:font-medium font-normal     text-transparent bg-clip-text   bg-gradient-to-r from-blue-900 to-red-600">
             <Link to={"/addProduct"} className="flex items-center">
               Add Product
             </Link>
           </li> */}
-          <li className="p-1 font-sans text-sm md:text-base lg:text-base text-black lg:font-semibold md:font-medium font-normal     text-transparent bg-clip-text   bg-gradient-to-r from-orange-700 to-orange-500">
-            <Link to={"/myOrders"} className="flex items-center">
-              My Orders
+          <li className="p-1 font-sans text-sm md:text-base lg:text-base text-black lg:font-semibold md:font-medium font-normal     text-transparent bg-clip-text   bg-gradient-to-r from-blue-900 to-red-600">
+            <Link to={"/myBookings"} className="flex items-center">
+              MY BOOKINGS
             </Link>
           </li>
         </>
@@ -32,17 +37,17 @@ const SecondNavbar = () => {
 
       {
         // !user &&
-        <li className="p-1 font-sans text-sm md:text-base lg:text-base text-black lg:font-semibold md:font-medium font-normal     text-transparent bg-clip-text   bg-gradient-to-r from-orange-700 to-orange-500">
+        <li className="p-1 font-sans text-sm md:text-base lg:text-base text-black lg:font-semibold md:font-medium font-normal     text-transparent bg-clip-text   bg-gradient-to-r from-blue-900 to-red-600">
           <Link to={"/signUp"} className="flex items-center">
-            SignUp
+            SIGN-UP
           </Link>
         </li>
       }
       {
         // !user &&
-        <li className="p-1 font-sans text-sm md:text-base lg:text-base text-black lg:font-semibold md:font-medium font-normal     text-transparent bg-clip-text   bg-gradient-to-r from-orange-700 to-orange-500">
+        <li className="p-1 font-sans text-sm md:text-base lg:text-base text-black lg:font-semibold md:font-medium font-normal     text-transparent bg-clip-text   bg-gradient-to-r from-blue-900 to-red-600">
           <Link to={"/signIn"} className="flex items-center">
-            SignIn
+            SIGN-IN
           </Link>
         </li>
       }
@@ -121,7 +126,7 @@ const SecondNavbar = () => {
               </div>
             </div>
           </div>
-          <Link className="btn-outline btn btn-warning">Appointment</Link>
+          {/* <Link className="btn-outline btn btn-warning">Book Now</Link> */}
         </div>
       </div>
     </div>

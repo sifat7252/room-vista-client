@@ -28,14 +28,14 @@ const FirstNavbar = () => {
     <div>
       <div className="navbar bg-base-100">
         <div className="flex-1">
-          <a className="btn btn-ghost normal-case text-xs flex flex-col md:flex-row lg:flex-row lg:text-base ">
+          <a className="btn btn-ghost normal-case text-xs flex flex-col md:flex-row lg:flex-row lg:text-base text-transparent bg-clip-text   bg-gradient-to-r from-blue-900 to-red-600">
             Contact : <span> +8801631-567252</span>
           </a>
         </div>
         <div className="flex items-center">
           <div className="dropdown flex  items-center gap-3 dropdown-end">
             <div className="border rounded-full p-2 lg:p-3 font-semibold">
-              <h2 className="text-sm">user name Here</h2>
+              <h2 className="text-sm text-transparent bg-clip-text   bg-gradient-to-r from-blue-900 to-red-600">user name Here</h2>
             </div>
             <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
               <div className="w-10 rounded-full">
