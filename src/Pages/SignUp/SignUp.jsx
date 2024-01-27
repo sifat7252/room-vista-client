@@ -2,14 +2,15 @@ import { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
 import { AuthContext } from "../../Providers/AuthProviders";
-import { toast } from 'react-toastify';
+
+import Swal from "sweetalert2";
 
 
 const SignUp = () => {
   const  { createUser } = useContext(AuthContext);
     const [showPasswordIcon, setShowPasswordIcon] = useState(false);
     const [registerError, setRegisterError] = useState("");
-    const [successMessage, setSuccessMessage] = useState("");
+   
 
     const handleRegister = e =>{
         e.preventDefault();
@@ -23,21 +24,47 @@ const SignUp = () => {
         console.log( registerUser);
 
         // ::: CONDITIONS FOR PASSWORD LENGTH AND CHECKED TICKED ::
-        if (password.length < 6) {
-          // toast.error("Password Should Be At Least 6 Character")
-          // toast.error('🦄 Wow so easy!', {
-          //   position: "top-right",
-          //   autoClose: 5000,
-          //   hideProgressBar: false,
-          //   closeOnClick: true,
-          //   pauseOnHover: true,
-          //   draggable: true,
-          //   progress: undefined,
-          //   theme: "light",
-          //   transition: Bounce,
-          //   });
+        // if (password.length < 6) {
+        //   // toast.error("Password Should Be At Least 6 Character")
+        //   // toast.error(' Wow so easy!', {
+        //   //   position: "top-right",
+        //   //   autoClose: 5000,
+        //   //   hideProgressBar: false,
+        //   //   closeOnClick: true,
+        //   //   pauseOnHover: true,
+        //   //   draggable: true,
+        //   //   progress: undefined,
+        //   //   theme: "light",
+        //   //   transition: Bounce,
+        //   //   });
           
-        }
+        // }
+
+        // ::: CREATING NEW USER WITH EMAIL AND PASSWORD :::
+        createUser(email, password)
+        .then(result => {
+          console.log(result.user);
+          Swal.fire({
+            position: "top-end",
+            icon: "success",
+            title: "New User Create Successfully.",
+            showConfirmButton: false,
+            timer: 1500
+          })
+          .catch(error => {
+            // console.log(error.message);
+            setRegisterError(error.message)
+            Swal.fire({
+              position: "top-end",
+              icon: "error",
+              title: registerError,
+              showConfirmButton: false,
+              timer: 1500
+              
+            });
+            console.log(registerError);
+          })
+        })
 
     }
     return (
