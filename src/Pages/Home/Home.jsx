@@ -1,3 +1,4 @@
+import Banner from "../../Component/Banner/Banner";
 
 
 const Home = () => {

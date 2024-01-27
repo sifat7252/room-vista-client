@@ -1,8 +1,11 @@
 import { FaEye, FaEyeSlash, FaGithub, FaGoogle } from 'react-icons/fa';
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import { Link } from 'react-router-dom';
+import { AuthContext } from '../../Providers/AuthProviders';
+import { toast } from 'sonner';
 
 const SignIn = () => {
+  const { googleSignIn } = useContext(AuthContext);
     const [showPasswordIcon, setShowPasswordIcon] = useState(false);
 
     const handleLogin = e =>{
@@ -10,21 +13,26 @@ const SignIn = () => {
         const form = e.target;
         const email = form.email.value;
         const password = form.password.value;
-        const newUser = {email, password}
-        console.log({newUser});
-    }
+        const signInUser = {email, password}
+        console.log({signInUser});
+    };
+    
 
     // ::: LOG IN WITH GOOGLE :::
     const handleGoogleLogin = ()=> {
-        // googleLogIn()
+      console.log("google sign in button clicked");
+        googleSignIn()
         // .then(result =>{
-        //   console.log(result)
-        //   setSignInSuccessMessage('Google Log In Successful')
-        //   swal("Congratulation !!", 'Google Log In Successful' || signInSuccessMessage , "success");
+        //   console.log(result);
+        //   // setSignInSuccessMessage('Google Log In Successful')
+        //   // swal("Congratulation !!", 'Google Log In Successful' || signInSuccessMessage , "success");
+        //   toast.success('Google Sign IN Successful');
+
         // })
         // .catch(error=>{
-        //   setSignInError(error.message)
-        //   swal("Opps !!", signInError , "error");
+        //   // setSignInError(error.message)
+        //   // swal("Opps !!", signInError , "error");
+        //   toast.error('Your email or password is incorrect');
         // });
   
       };
@@ -58,7 +66,7 @@ const SignIn = () => {
             Log In
           </h4> */}
           <p className="mt-1 block font-sans text-base font-normal leading-relaxed text-gray-700 antialiased">
-            Enter your Email and Password for log in.
+            Enter your Email and Password for Sign In.
           </p>
           </div>
           <form onSubmit={handleLogin} className="mt-8 mb-2 w-80 max-w-screen-lg sm:w-96">
@@ -92,7 +100,7 @@ const SignIn = () => {
               type="submit"
               data-ripple-light="true"
             >
-              Login
+              SignIn
             </button>
             <p className="mt-4 block text-center font-sans text-base font-normal leading-relaxed text-gray-700 antialiased">
               New Here ?
@@ -109,8 +117,8 @@ const SignIn = () => {
             
             <div className="p-4">
               
-                <button onClick={handleGoogleLogin} className='btn btn-outline flex text-sky-500 w-full m-2 mx-auto'><FaGoogle></FaGoogle> Google LogIn</button>
-                <button onClick={handleGithubLogin} className='btn btn-outline flex text-black-500 w-full m-2 mx-auto'><FaGithub></FaGithub> Github LogIn</button>
+                <button onClick={handleGoogleLogin} className='btn btn-outline flex text-sky-500 w-full m-2 mx-auto'><FaGoogle></FaGoogle> Google SignIn</button>
+                <button onClick={handleGithubLogin} className='btn btn-outline flex text-black-500 w-full m-2 mx-auto'><FaGithub></FaGithub> Github SignIn</button>
             </div>
           </form>
           </div>

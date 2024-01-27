@@ -1,10 +1,15 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
+import { AuthContext } from "../../Providers/AuthProviders";
+import { toast } from 'react-toastify';
 
 
 const SignUp = () => {
+  const  { createUser } = useContext(AuthContext);
     const [showPasswordIcon, setShowPasswordIcon] = useState(false);
+    const [registerError, setRegisterError] = useState("");
+    const [successMessage, setSuccessMessage] = useState("");
 
     const handleRegister = e =>{
         e.preventDefault();
@@ -16,9 +21,27 @@ const SignUp = () => {
         // const accepted = form.checkbox.checked;
         const registerUser = {name, photoUrl, email, password}
         console.log( registerUser);
+
+        // ::: CONDITIONS FOR PASSWORD LENGTH AND CHECKED TICKED ::
+        if (password.length < 6) {
+          // toast.error("Password Should Be At Least 6 Character")
+          // toast.error('🦄 Wow so easy!', {
+          //   position: "top-right",
+          //   autoClose: 5000,
+          //   hideProgressBar: false,
+          //   closeOnClick: true,
+          //   pauseOnHover: true,
+          //   draggable: true,
+          //   progress: undefined,
+          //   theme: "light",
+          //   transition: Bounce,
+          //   });
+          
+        }
+
     }
     return (
-        <div>
+         <div>
             <div className="flex justify-center items-center mt-8 mx-10">
       <div className="relative flex flex-col rounded-xl bg-transparent bg-clip-border text-gray-700 shadow-lg p-8 " data-aos="flip-right"
      data-aos-easing="ease-out-cubic"
@@ -126,7 +149,7 @@ const SignUp = () => {
               className="btn-link font-medium text-blue-900 transition-colors hover:text-blue-700"
               
             >
-              Log In
+              Sign In
             </button>
             </Link>
           </p>
