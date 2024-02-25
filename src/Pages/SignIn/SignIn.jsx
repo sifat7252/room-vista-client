@@ -2,10 +2,11 @@ import { FaEye, FaEyeSlash, FaGithub, FaGoogle } from 'react-icons/fa';
 import { useContext, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../../Providers/AuthProviders';
-import { toast } from 'sonner';
+import Swal from 'sweetalert2';
+// import { toast } from 'sonner';
 
 const SignIn = () => {
-  const { googleSignIn } = useContext(AuthContext);
+  const { signIn, googleSignIn, githubSignIn } = useContext(AuthContext);
     const [showPasswordIcon, setShowPasswordIcon] = useState(false);
 
     const handleLogin = e =>{
@@ -15,40 +16,83 @@ const SignIn = () => {
         const password = form.password.value;
         const signInUser = {email, password}
         console.log({signInUser});
+
+        // ::: SIGN IN WITH EMAIL AND PASSWORD :::
+        signIn(email, password)
+        .then(result =>{
+          console.log(result.user);
+          Swal.fire({
+            position: "top-end",
+            icon: "success",
+            title: "Sign In Successful",
+            showConfirmButton: false,
+            timer: 1500
+          })
+          .catch(error =>{
+            console.error(error);
+            Swal.fire({
+              position: "top-end",
+              icon: "error",
+              title: "Your Email or Password is Incorrect",
+              showConfirmButton: false,
+              timer: 1500
+            });
+          })
+        })
     };
     
 
     // ::: LOG IN WITH GOOGLE :::
     const handleGoogleLogin = ()=> {
       console.log("google sign in button clicked");
-        googleSignIn()
-        // .then(result =>{
-        //   console.log(result);
-        //   // setSignInSuccessMessage('Google Log In Successful')
-        //   // swal("Congratulation !!", 'Google Log In Successful' || signInSuccessMessage , "success");
-        //   toast.success('Google Sign IN Successful');
-
-        // })
-        // .catch(error=>{
-        //   // setSignInError(error.message)
-        //   // swal("Opps !!", signInError , "error");
-        //   toast.error('Your email or password is incorrect');
-        // });
+      googleSignIn()
+      .then(result =>{
+        console.log(result.user);
+        Swal.fire({
+          position: "top-end",
+          icon: "success",
+          title: "Google Sign In Successful",
+          showConfirmButton: false,
+          timer: 1500
+        })
+        .catch(error =>{
+          console.error(error);
+          Swal.fire({
+            position: "top-end",
+            icon: "error",
+            title: "Something is went wrong",
+            showConfirmButton: false,
+            timer: 1500
+          });
+        })
+      })
   
       };
       
-      // LOG IN WITH GITHUB :::
+      // :::: LOG IN WITH GITHUB :::
+
       const handleGithubLogin = ()=> {
-        // githubLogIn()
-        // .then(result =>{
-        //   console.log(result)
-        //   setSignInSuccessMessage('Github Log In Successful')
-        //   swal("Congratulation !!", 'Github Log In Successful'|| signInSuccessMessage , "success");
-        // })
-        // .catch(error=>{
-        //   setSignInError(error.message)
-        //   swal("Opps !!", signInError , "error");
-        // })
+        githubSignIn()
+        .then(result =>{
+          console.log(result.user);
+          Swal.fire({
+            position: "top-end",
+            icon: "success",
+            title: "Github Sign In Successful",
+            showConfirmButton: false,
+            timer: 1500
+          })
+          .catch(error =>{
+            console.error(error);
+            Swal.fire({
+              position: "top-end",
+              icon: "error",
+              title: "Something is went wrong",
+              showConfirmButton: false,
+              timer: 1500
+            });
+          })
+        })
   
       }
 
@@ -100,7 +144,7 @@ const SignIn = () => {
               type="submit"
               data-ripple-light="true"
             >
-              SignIn
+              Sign In
             </button>
             <p className="mt-4 block text-center font-sans text-base font-normal leading-relaxed text-gray-700 antialiased">
               New Here ?
@@ -117,8 +161,8 @@ const SignIn = () => {
             
             <div className="p-4">
               
-                <button onClick={handleGoogleLogin} className='btn btn-outline flex text-sky-500 w-full m-2 mx-auto'><FaGoogle></FaGoogle> Google SignIn</button>
-                <button onClick={handleGithubLogin} className='btn btn-outline flex text-black-500 w-full m-2 mx-auto'><FaGithub></FaGithub> Github SignIn</button>
+                <button onClick={handleGoogleLogin} className='btn btn-outline flex text-sky-500 w-full m-2 mx-auto'><FaGoogle></FaGoogle> Google Sign In</button>
+                <button onClick={handleGithubLogin} className='btn btn-outline flex text-black-500 w-full m-2 mx-auto'><FaGithub></FaGithub> Github Sign In</button>
             </div>
           </form>
           </div>

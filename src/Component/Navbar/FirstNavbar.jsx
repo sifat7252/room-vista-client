@@ -5,7 +5,7 @@ import { AuthContext } from "../../Providers/AuthProviders";
 const FirstNavbar = () => {
   const { user } = useContext(AuthContext)
   console.log(user);
-  console.log(user.photoURL);
+  // console.log(user.photoURL);
     // TOGGLE THEME CHANGE FUNCTION
   const [mode, setMode] = useState("light");
   function changeTheme() {

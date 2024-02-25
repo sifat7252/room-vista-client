@@ -12,7 +12,7 @@ const SignUp = () => {
     const [registerError, setRegisterError] = useState("");
    
 
-    const handleRegister = e =>{
+    const handleRegister = (e) =>{
         e.preventDefault();
         const form = e.target;
         const name = form.name.value;
