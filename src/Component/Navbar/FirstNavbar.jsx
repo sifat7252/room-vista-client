@@ -1,7 +1,11 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
+import { AuthContext } from "../../Providers/AuthProviders";
 
 
 const FirstNavbar = () => {
+  const { user } = useContext(AuthContext)
+  console.log(user);
+  console.log(user.photoURL);
     // TOGGLE THEME CHANGE FUNCTION
   const [mode, setMode] = useState("light");
   function changeTheme() {
@@ -35,11 +39,24 @@ const FirstNavbar = () => {
         <div className="flex items-center">
           <div className="dropdown flex  items-center gap-3 dropdown-end">
             <div className="border rounded-full p-2 lg:p-3 font-semibold">
-              <h2 className="text-sm text-transparent bg-clip-text   bg-gradient-to-r from-blue-900 to-red-600">user name Here</h2>
+            {user ? (
+                <h2 className="text-sm text-transparent bg-clip-text   bg-gradient-to-r from-blue-900 to-red-600">
+                  {user?.displayName}
+                </h2>
+              ) : (
+                <h2 className="text-sm text-transparent bg-clip-text   bg-gradient-to-r from-blue-900 to-red-600">
+                  NO USER
+                </h2>
+              )}
+              
             </div>
             <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
               <div className="w-10 rounded-full">
-                <img src="https://i.ibb.co/HnLSwS2/user-removebg-preview.png" />
+              {user ? (
+                  <img src={user?.photoURL} alt="" />
+                ) : (
+                  <img src="https://i.ibb.co/HnLSwS2/user-removebg-preview.png" />
+                )}
               </div>
             </label>
             <ul
