@@ -2,19 +2,39 @@ import { FaEye, FaEyeSlash, FaGithub, FaGoogle } from 'react-icons/fa';
 import { useContext, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../../Providers/AuthProviders';
-import { toast } from 'sonner';
+// import { toast } from 'sonner';
+import toast from "react-hot-toast";
 
 const SignIn = () => {
-  const { googleSignIn } = useContext(AuthContext);
+  const { signIn ,googleSignIn } = useContext(AuthContext);
     const [showPasswordIcon, setShowPasswordIcon] = useState(false);
 
-    const handleLogin = e =>{
+    const handleLogin = (e) =>{
         e.preventDefault();
         const form = e.target;
         const email = form.email.value;
         const password = form.password.value;
         const signInUser = {email, password}
         console.log({signInUser});
+
+        // ::: CONDITION FOR PASSWORD :::
+        if (password.length < 6) {
+          toast.error('Password should be At least 6 character')
+          return;
+        }
+
+        // ::: SIGN IN WITH EMAIL AND PASSWORD :::
+        signIn(email,password)
+        .then(result => {
+          console.log(result.user);
+          console.log("sign in button clicked");
+          toast.success('Successfully Logged In!!');
+
+        })
+        .catch(error => {
+          console.error(error);
+          toast.error('Your email or password is incorrect!!');
+        })
     };
     
 
@@ -22,8 +42,14 @@ const SignIn = () => {
     const handleGoogleLogin = ()=> {
       console.log("google sign in button clicked");
         googleSignIn()
-        // .then(result =>{
-        //   console.log(result);
+        .then(result =>{
+          console.log(result);
+          toast.success('Google Sign In Successful')
+        })
+        .catch(error =>{
+          console.log(error.message);
+          toast.error('error.message')
+        })
         //   // setSignInSuccessMessage('Google Log In Successful')
         //   // swal("Congratulation !!", 'Google Log In Successful' || signInSuccessMessage , "success");
         //   toast.success('Google Sign IN Successful');
@@ -100,7 +126,7 @@ const SignIn = () => {
               type="submit"
               data-ripple-light="true"
             >
-              SignIn
+              Sign In
             </button>
             <p className="mt-4 block text-center font-sans text-base font-normal leading-relaxed text-gray-700 antialiased">
               New Here ?

@@ -2,16 +2,18 @@ import { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
 import { AuthContext } from "../../Providers/AuthProviders";
-import { toast } from 'react-toastify';
+import toast from "react-hot-toast";
+// import { toast } from 'react-toastify';
+// import { Toast } from "react-toastify/dist/components";
 
 
 const SignUp = () => {
   const  { createUser } = useContext(AuthContext);
     const [showPasswordIcon, setShowPasswordIcon] = useState(false);
-    const [registerError, setRegisterError] = useState("");
-    const [successMessage, setSuccessMessage] = useState("");
+    // const [registerError, setRegisterError] = useState("");
+    // const [successMessage, setSuccessMessage] = useState("");
 
-    const handleRegister = e =>{
+    const handleRegister = (e) =>{
         e.preventDefault();
         const form = e.target;
         const name = form.name.value;
@@ -24,6 +26,8 @@ const SignUp = () => {
 
         // ::: CONDITIONS FOR PASSWORD LENGTH AND CHECKED TICKED ::
         if (password.length < 6) {
+          toast.error('Password should be At least 6 character')
+          return
           // toast.error("Password Should Be At Least 6 Character")
           // toast.error('🦄 Wow so easy!', {
           //   position: "top-right",
@@ -38,6 +42,17 @@ const SignUp = () => {
           //   });
           
         }
+
+        // :: CREATING NEW USER WITH EMAIL AND PASSWORD ::
+        createUser()
+        .then(result =>{
+          console.log(result);
+          toast.success("New User Created Successfully")
+        })
+        .catch(error =>{
+          console.log(error.message);
+          toast.error(error.message)
+        })
 
     }
     return (

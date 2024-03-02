@@ -1,6 +1,6 @@
 import { createContext, useEffect, useState } from "react";
 import auth from "../firebase/firebase.config";
-import { GithubAuthProvider, GoogleAuthProvider, createUserWithEmailAndPassword, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup } from "firebase/auth";
+import { GithubAuthProvider, GoogleAuthProvider, createUserWithEmailAndPassword, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut  } from "firebase/auth";
 import PropTypes from "prop-types";
 
 
@@ -23,9 +23,9 @@ const AuthProviders = ({ children }) => {
     };
 
     // ::: LOG OUT BUTTON HANDLER :::
-    const signOut = () => {
+    const logOut = () => {
         setLoading(true);
-        return signOut(auth);
+        return signOut(auth)
     };
 
     // ::: AUTHENTICATION PROVIDERS :::
@@ -33,7 +33,7 @@ const AuthProviders = ({ children }) => {
     const githubProvider = new GithubAuthProvider();
 
     // ::: GOOGLE SIGN IN METHOD :::
-    const googleSignIn = (email, password) => {
+    const googleSignIn = () => {
         setLoading(true);
         return signInWithPopup(auth, googleProvider)
     };
@@ -55,16 +55,16 @@ const AuthProviders = ({ children }) => {
         };
     },[]);
 
-    const userInfo = {user, loading, createUser, signIn, signOut, googleSignIn, githubSignIn};
+    const userInfo = {user, loading, createUser, signIn, logOut, googleSignIn, githubSignIn};
 
 
 
     return (
-        <div>
+        
             <AuthContext.Provider value={userInfo}>
                 {children}
             </AuthContext.Provider>
-        </div>
+        
     );
 };
 
