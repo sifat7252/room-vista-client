@@ -1,5 +1,6 @@
 import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../Providers/AuthProviders";
+<<<<<<< HEAD
 import toast from "react-hot-toast";
 
 
@@ -8,6 +9,14 @@ const FirstNavbar = () => {
   console.log(user);
 
 
+=======
+
+
+const FirstNavbar = () => {
+  const { user } = useContext(AuthContext)
+  console.log(user);
+  // console.log(user.photoURL);
+>>>>>>> 0571be587db98e1379988ed623563ceb08f0a3b8
     // TOGGLE THEME CHANGE FUNCTION
   const [mode, setMode] = useState("light");
   function changeTheme() {
@@ -56,6 +65,7 @@ const FirstNavbar = () => {
         <div className="flex items-center">
           <div className="dropdown flex  items-center gap-3 dropdown-end">
             <div className="border rounded-full p-2 lg:p-3 font-semibold">
+<<<<<<< HEAD
               <h2 className="text-sm text-transparent bg-clip-text   bg-gradient-to-r from-blue-900 to-red-600">{user ? user?.displayName : "Sign In"}</h2>
             </div>
             <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
@@ -64,6 +74,26 @@ const FirstNavbar = () => {
                   user ? <img src={user?.photoURL} alt="" /> : <img src="https://i.ibb.co/HnLSwS2/user-removebg-preview.png" />
                 }
                 
+=======
+            {user ? (
+                <h2 className="text-sm text-transparent bg-clip-text   bg-gradient-to-r from-blue-900 to-red-600">
+                  {user?.displayName}
+                </h2>
+              ) : (
+                <h2 className="text-sm text-transparent bg-clip-text   bg-gradient-to-r from-blue-900 to-red-600">
+                  NO USER
+                </h2>
+              )}
+              
+            </div>
+            <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
+              <div className="w-10 rounded-full">
+              {user ? (
+                  <img src={user?.photoURL} alt="" />
+                ) : (
+                  <img src="https://i.ibb.co/HnLSwS2/user-removebg-preview.png" />
+                )}
+>>>>>>> 0571be587db98e1379988ed623563ceb08f0a3b8
               </div>
             </label>
             <ul

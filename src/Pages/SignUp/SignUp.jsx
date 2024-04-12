@@ -2,16 +2,26 @@ import { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
 import { AuthContext } from "../../Providers/AuthProviders";
+<<<<<<< HEAD
 import toast from "react-hot-toast";
 // import { toast } from 'react-toastify';
 // import { Toast } from "react-toastify/dist/components";
+=======
+
+import Swal from "sweetalert2";
+>>>>>>> 0571be587db98e1379988ed623563ceb08f0a3b8
 
 
 const SignUp = () => {
   const  { createUser } = useContext(AuthContext);
     const [showPasswordIcon, setShowPasswordIcon] = useState(false);
+<<<<<<< HEAD
     // const [registerError, setRegisterError] = useState("");
     // const [successMessage, setSuccessMessage] = useState("");
+=======
+    const [registerError, setRegisterError] = useState("");
+   
+>>>>>>> 0571be587db98e1379988ed623563ceb08f0a3b8
 
     const handleRegister = (e) =>{
         e.preventDefault();
@@ -25,6 +35,7 @@ const SignUp = () => {
         console.log( registerUser);
 
         // ::: CONDITIONS FOR PASSWORD LENGTH AND CHECKED TICKED ::
+<<<<<<< HEAD
         if (password.length < 6) {
           toast.error('Password should be At least 6 character')
           return
@@ -40,8 +51,49 @@ const SignUp = () => {
           //   theme: "light",
           //   transition: Bounce,
           //   });
+=======
+        // if (password.length < 6) {
+        //   // toast.error("Password Should Be At Least 6 Character")
+        //   // toast.error(' Wow so easy!', {
+        //   //   position: "top-right",
+        //   //   autoClose: 5000,
+        //   //   hideProgressBar: false,
+        //   //   closeOnClick: true,
+        //   //   pauseOnHover: true,
+        //   //   draggable: true,
+        //   //   progress: undefined,
+        //   //   theme: "light",
+        //   //   transition: Bounce,
+        //   //   });
+>>>>>>> 0571be587db98e1379988ed623563ceb08f0a3b8
           
-        }
+        // }
+
+        // ::: CREATING NEW USER WITH EMAIL AND PASSWORD :::
+        createUser(email, password)
+        .then(result => {
+          console.log(result.user);
+          Swal.fire({
+            position: "top-end",
+            icon: "success",
+            title: "New User Create Successfully.",
+            showConfirmButton: false,
+            timer: 1500
+          })
+          .catch(error => {
+            // console.log(error.message);
+            setRegisterError(error.message)
+            Swal.fire({
+              position: "top-end",
+              icon: "error",
+              title: registerError,
+              showConfirmButton: false,
+              timer: 1500
+              
+            });
+            console.log(registerError);
+          })
+        })
 
         // :: CREATING NEW USER WITH EMAIL AND PASSWORD ::
         createUser()
